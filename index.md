@@ -306,7 +306,7 @@ Go to p285
 
 * Timer 割り込みで1ms刻みで実行
 * 現在走っているプロセスのtimeslice -= 1
-* 現在走っているプロセスのtimeslice == 0 だったらそのプロセスを退避させ(expired arrayに、interactiveな場合はactive arrayに再挿入)、TIF_TASK_NEED_SCHEDフラッグを立て、schedule()が呼ばれるようにする。
+* 現在走っているプロセスのtimeslice == 0 だったらそのプロセスを expired array に退避させ(I/Oバウンド型の場合はactive arrayに再挿入)、TIF_TASK_NEED_SCHEDフラッグを立て、schedule()が呼ばれるようにする。
 * InteractiveプロセスがTIME_GRANUALITY走ったら次のプロセスに譲るように施す。
 
 cf. [http://www.logos.ic.i.u-tokyo.ac.jp/~kenny/presentation/linux_sched26.ppt](http://www.logos.ic.i.u-tokyo.ac.jp/~kenny/presentation/linux_sched26.ppt)
@@ -484,7 +484,7 @@ taskset 0x00000001 pid
 * 静的優先度(nice値)だけじゃない。動的に優先度を変更
 * 平均休止時間が長いとボーナス高くなる => I/Oバウンド型になりやすい
 * 優先度が高いほどボーナスの閾値(対話型差分)が小さくなる => I/Oバウンド型になりやすい
-* I/Oバウンド型に区別されると、クォンタムを使い切っても(通常)活動状態のまま
+* I/Oバウンド型に区別されると、クォンタムを使い切っても(通常)活動状態のままという特典
 
 # まとめ(2)
 
