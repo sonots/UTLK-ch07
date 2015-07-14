@@ -280,8 +280,8 @@ Go to p284
 
 # 7.3.1 runqueue データ構造
 
-* arrays[0] が active で arrays[1] が expired
-* 図 7-1 を見るに、arrays[0][139] のようにアクセスする？
+* arrays[0] と arrays[1] のどちらかが active で expired (切り替わる)
+* 図 7-1 を見るに、active[0]、なければ active[1] のように順繰りアクセスする？
 
 <img src="./pictures/figure-7-1.png" height="80%" width="80%"/>
 
