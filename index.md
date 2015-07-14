@@ -342,12 +342,13 @@ cf. [http://www.logos.ic.i.u-tokyo.ac.jp/~kenny/presentation/linux_sched26.ppt](
 
 cf. [http://www.logos.ic.i.u-tokyo.ac.jp/~kenny/presentation/linux_sched26.ppt](http://www.logos.ic.i.u-tokyo.ac.jp/~kenny/presentation/linux_sched26.ppt)
 
-# 7.4.4.1(2) 直接、遅延呼び出し
+# 7.4.4.1 schedule(2)
 
-* 資源が利用不可
-  * 直接呼び出して、CPUを他のプロセスに譲る
-* クォンタムを使い果たした or
-* プロセス起床時にカレントプロセスの優先度よりも高い場合
+
+* 直接呼び出し
+  * 資源が利用不可な場合、schedule() を直接呼び出して、CPUを他のプロセスに譲る
+* 遅延呼び出し
+  * クォンタムを使い果たした or プロセス起床時にカレントプロセスの優先度よりも高い
   * TIF_NEED_RESCHEDフラグを1に設定して、遅延呼び出し
 
 # 7.4.4.3 - 7.4.4.5 プロセス切り替え前のschedule()関数処理
